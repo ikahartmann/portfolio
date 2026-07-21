@@ -1,3 +1,5 @@
+// Mobile menu toggle
+
 const mobileMenu = document.getElementById('mobile-menu');
 const navLinks = document.querySelector('.nav-links');
 
@@ -36,6 +38,8 @@ navLinks.addEventListener('mousemove', (e) => {
     navLinks.style.setProperty('--menu-y', `${y}px`);
 });
 
+// Header scroll effect
+
 const header = document.getElementById('main-header');
 
 window.addEventListener('scroll', () => {
@@ -45,6 +49,8 @@ window.addEventListener('scroll', () => {
         header.classList.remove('scrolled');
     }
 });
+
+// Header mousemove effect
 
 const mainHeader = document.getElementById('main-header');
 
@@ -58,6 +64,8 @@ mainHeader.addEventListener('mousemove', (e) => {
     mainHeader.style.setProperty('--y', `${y}px`);
 });
 
+// Cart icon toggle
+
 const cartIcon = document.querySelector('.cart-icon');
 
 cartIcon.addEventListener('click', (e) => {
@@ -65,6 +73,8 @@ cartIcon.addEventListener('click', (e) => {
     
     cartIcon.classList.toggle('active');
 });
+
+// Menu items slider
 
 const navLinksElement = document.querySelector('.nav-links');
 
@@ -76,6 +86,8 @@ menuitems.forEach((item, index) => {
         wrapper.style.transform = `translateX(${-100 * index}vw)`
     });
 });
+
+// Logo state change on scroll and hover
 
 const logoImg = document.getElementById('logo-img');
 const mainHeaderElement = document.getElementById('main-header');
@@ -95,3 +107,23 @@ window.addEventListener('scroll', updateLogoState);
 
 mainHeaderElement.addEventListener('mouseenter', updateLogoState);
 mainHeaderElement.addEventListener('mouseleave', updateLogoState);
+
+//Efeito da mulher
+
+const hero = document.querySelector('.hero');
+const heroWoman = document.querySelector('.hero-woman');
+
+const maxScale = 1.35;
+
+function updateHeroWomanScale() {
+    const rect = hero.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+
+    const progress = Math.max(0, Math.min(1, 1 - rect.bottom / viewportHeight));
+    const scale = 1 + progress * (maxScale - 1);
+    heroWoman.style.transform = `scale(${scale})`;
+};
+
+window.addEventListener('scroll', updateHeroWomanScale);
+window.addEventListener('resize', updateHeroWomanScale);
+window.addEventListener('load', updateHeroWomanScale);
